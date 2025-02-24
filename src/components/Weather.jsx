@@ -1,9 +1,25 @@
 import React, { useState } from "react";
+import clear_icon from "../assets/clear.png";
+import cloud_icon from "../assets/cloud.png";
+import drizzle_icon from "../assets/drizzle.png";
+import humidity_icon from "../assets/humidity.png";
+import rain_icon from "../assets/rain.png";
+import snow_icon from "../assets/snow.png";
+import wind_icon from "../assets/wind.png";
 
 function Weather() {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
+
+  const weatherIcons = {
+    Clear: clear_icon,
+    Cloud: cloud_icon,
+    Drizzle: drizzle_icon,
+    Rain: rain_icon,
+    Snow: snow_icon,
+    Wind: wind_icon,
+  };
 
   const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY;
 
@@ -63,6 +79,10 @@ function Weather() {
             <h2 className="text-2xl font-bold mt-2">
               {weather.name}, {weather.sys.country}
             </h2>
+            <img
+              src={weatherIcons[weather.weather[0].main] || clear_icon}
+              alt={weather.weather[0].main}
+            />
             <p className="text-lg capitalize mt-1">
               {weather.weather[0].description}
             </p>
@@ -70,13 +90,15 @@ function Weather() {
               {weather.main.temp}℃
             </h3>
             <div className="flex justify-between w-full mt-4 px-4">
-              <div className="text-center">
+              <div className="text-center flex items-center">
+                <img src={humidity_icon} alt="" className="w-5 h-5" />
                 <p className="text-sm">Humidity</p>
                 <p className="text-lg font-semibold">
                   {weather.main.humidity}%
                 </p>
               </div>
-              <div className="text-center">
+              <div className="text-center flex items-center">
+                <img src={wind_icon} alt="" className="w-5 h-5" />
                 <p className="text-sm">Wind Speed</p>
                 <p className="text-lg font-semibold">
                   {weather.wind.speed} m/s
@@ -100,6 +122,10 @@ function Weather() {
                       weekday: "short",
                     })}
                   </p>
+                  <img
+                    src={weatherIcons[day.weather[0].main] || clear_icon}
+                    alt={day.weather[0].main}
+                  />
                   <p className="text-white">{day.weather[0].description}</p>
                   <p className="text-lg font-bold">{day.main.temp}℃</p>
                 </div>
