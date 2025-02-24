@@ -51,7 +51,7 @@ function Weather() {
   };
 
   return (
-    <div className="flex flex-col items-center p-6 min-h-screen bg-[#212121]">
+    <div className="flex flex-col items-center p-6 min-h-screen">
       <h1 className="text-2xl font-bold mb-4 text-white">Weather Report</h1>
       <div className="flex gap-2 mb-8">
         <input
@@ -69,7 +69,7 @@ function Weather() {
         </button>
       </div>
 
-      <div className="rounded-lg w-full flex items-center flex-col text-white">
+      <div className="rounded-lg w-full flex items-center flex-col text-black bg-white/20 backdrop-blur-md">
         {/* Current Weather */}
         {weather && (
           <div className="mt-6 p-6 w-96 bg-transparent flex flex-col items-center rounded-2xl">
