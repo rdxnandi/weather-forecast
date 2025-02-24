@@ -50,9 +50,6 @@ function Weather() {
     }
   };
 
-  // const weatherCode = weather.weather[0].icon;
-  // const weatherIcon = allIcons[weatherCode] || clear_icon;
-
   return (
     <div className="flex flex-col items-center p-6 min-h-screen bg-[#212121]">
       <h1 className="text-2xl font-bold mb-4 text-white">Weather Report</h1>
@@ -75,13 +72,14 @@ function Weather() {
       <div className="rounded-lg w-full flex items-center flex-col text-white">
         {/* Current Weather */}
         {weather && (
-          <div className="mt-6 p-6 w-80 bg-transparent flex flex-col items-center rounded-2xl">
+          <div className="mt-6 p-6 w-96 bg-transparent flex flex-col items-center rounded-2xl">
             <h2 className="text-2xl font-bold mt-2">
               {weather.name}, {weather.sys.country}
             </h2>
             <img
               src={weatherIcons[weather.weather[0].main] || clear_icon}
               alt={weather.weather[0].main}
+              className="w-20"
             />
             <p className="text-lg capitalize mt-1">
               {weather.weather[0].description}
@@ -89,20 +87,24 @@ function Weather() {
             <h3 className="text-4xl font-semibold mt-2">
               {weather.main.temp}℃
             </h3>
-            <div className="flex justify-between w-full mt-4 px-4">
-              <div className="text-center flex items-center">
+            <div className="flex justify-between w-full mt-4">
+              <div className="text-center flex items-center gap-3">
                 <img src={humidity_icon} alt="" className="w-5 h-5" />
-                <p className="text-sm">Humidity</p>
-                <p className="text-lg font-semibold">
-                  {weather.main.humidity}%
-                </p>
+                <div className="flex flex-col">
+                  <p className="text-sm">Humidity</p>
+                  <p className="text-lg font-semibold">
+                    {weather.main.humidity}%
+                  </p>
+                </div>
               </div>
-              <div className="text-center flex items-center">
+              <div className="text-center flex items-center gap-3">
                 <img src={wind_icon} alt="" className="w-5 h-5" />
-                <p className="text-sm">Wind Speed</p>
-                <p className="text-lg font-semibold">
-                  {weather.wind.speed} m/s
-                </p>
+                <div className="flex flex-col">
+                  <p className="text-sm">Wind Speed</p>
+                  <p className="text-lg font-semibold">
+                    {weather.wind.speed} m/s
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -125,6 +127,7 @@ function Weather() {
                   <img
                     src={weatherIcons[day.weather[0].main] || clear_icon}
                     alt={day.weather[0].main}
+                    className="w-20"
                   />
                   <p className="text-white">{day.weather[0].description}</p>
                   <p className="text-lg font-bold">{day.main.temp}℃</p>
